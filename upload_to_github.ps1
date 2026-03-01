@@ -1,6 +1,6 @@
 # === CONFIG ===
 $repoName = "trading_bot_6"
-$githubUser = "YOUR_GITHUB_USERNAME"
+$githubUser = "dezr-1978"
 $projectPath = "C:\Users\HP\Desktop\trading_bot\trading_bot_6"
 
 # === MOVE TO PROJECT ===
@@ -79,9 +79,17 @@ if ($remotes -contains "origin") {
 # === ADD NEW REMOTE ===
 git remote add origin https://github.com/$githubUser/$repoName.git
 
-# === ADD & COMMIT ===
+# === ADD & COMMIT ONLY IF CHANGES EXIST ===
 git add .
-git commit -m "Update project" --allow-empty
+
+# Check if there are changes
+$changes = git status --porcelain
+
+if ($changes) {
+    git commit -m "Update project"
+} else {
+    Write-Host "No changes to commit."
+}
 
 # === PUSH ===
 git branch -M main
