@@ -6,7 +6,8 @@ $projectPath = "C:\Users\HP\Desktop\trading_bot\trading_bot_6"
 # === MOVE TO PROJECT ===
 Set-Location $projectPath
 
-# === CREATE .gitignore ===
+# === CREATE .gitignore IF NOT EXISTS ===
+if (!(Test-Path ".gitignore")) {
 @"
 # Python
 __pycache__/
@@ -43,8 +44,10 @@ config/api_keys.json
 .DS_Store
 Thumbs.db
 "@ | Out-File -Encoding utf8 ".gitignore"
+}
 
-# === CREATE README ===
+# === CREATE README IF NOT EXISTS ===
+if (!(Test-Path "README.md")) {
 @"
 # Trading Bot 6
 
@@ -60,14 +63,25 @@ AI-driven trading bot with:
 ## Run
 python main.py
 "@ | Out-File -Encoding utf8 "README.md"
+}
 
-# === INIT GIT ===
-git init
-git add .
-git commit -m "Initial commit: trading bot core"
+# === INIT GIT IF NOT INITIALIZED ===
+if (!(Test-Path ".git")) {
+    git init
+}
 
-# === ADD REMOTE ===
+# === REMOVE OLD REMOTE IF EXISTS ===
+$remotes = git remote
+if ($remotes -contains "origin") {
+    git remote remove origin
+}
+
+# === ADD NEW REMOTE ===
 git remote add origin https://github.com/$githubUser/$repoName.git
+
+# === ADD & COMMIT ===
+git add .
+git commit -m "Update project" --allow-empty
 
 # === PUSH ===
 git branch -M main
