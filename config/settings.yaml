@@ -1,0 +1,7 @@
+# config/settings.py
+
+SETTINGS = {
+    "mode": "paper",   # paper / real
+    "symbols": ["BTCUSDT"],
+    "timeframe": "5m",
+}

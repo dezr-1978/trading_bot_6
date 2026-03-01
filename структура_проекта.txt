@@ -1,0 +1,43 @@
+trading_bot_full_pro/
+│
+├── main.py
+├── runtime_config.json
+├── README.md
+│
+├── core/
+│   ├── data.py
+│   ├── indicators.py
+│   ├── strategy.py
+│   ├── execution.py
+│   ├── risk.py
+│   ├── portfolio.py
+│   ├── market_filter.py
+│   ├── config.py
+│   ├── state.py
+│   └── __init__.py
+│
+├── backtest/
+│   ├── backtester.py
+│   ├── metrics.py
+│   ├── walk_forward.py
+│   └── __init__.py
+│
+├── basckets/
+│   ├── data_loader.py
+│   ├── visualize.py
+│   ├── visualizewalk_forward.py
+│   └── __init__.py
+│
+├── ai/
+│   ├── model.py
+│   ├── inference.py
+│   └── __init__.py
+│
+├── dashboard/
+│   ├── dashboard.py
+│   └── __init__.py
+│
+└── utils/
+    ├── time.py
+    ├── logger.py
+    └── __init__.py

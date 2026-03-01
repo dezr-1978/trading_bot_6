@@ -18,18 +18,27 @@ TIMEFRAME_SECONDS = {
 
 
 def sleep_seconds(seconds: int):
+    """
+    Простий sleep з логом
+    """
     logger.debug(f"[TIME] Sleeping for {seconds} seconds")
     time.sleep(seconds)
 
 
 def sleep_to_next_candle(timeframe: str):
+    """
+    Засипає до початку наступної свічки
+    """
     if timeframe not in TIMEFRAME_SECONDS:
         raise ValueError(f"Unsupported timeframe: {timeframe}")
 
     tf_sec = TIMEFRAME_SECONDS[timeframe]
     now = datetime.utcnow()
+
+    # секунд з початку епохи
     now_ts = int(now.timestamp())
     next_candle_ts = ((now_ts // tf_sec) + 1) * tf_sec
+
     sleep_for = next_candle_ts - now_ts
 
     if sleep_for > 0:
@@ -41,6 +50,9 @@ def sleep_to_next_candle(timeframe: str):
 
 
 def is_new_candle(last_candle_time: datetime, timeframe: str) -> bool:
+    """
+    Перевіряє, чи почалась нова свічка
+    """
     if timeframe not in TIMEFRAME_SECONDS:
         raise ValueError(f"Unsupported timeframe: {timeframe}")
 

@@ -1,0 +1,9 @@
+{
+  "bot_enabled": true,
+  "market_filter": true,
+  "volume_filter": true,
+  "risk_per_trade": 0.01,
+  "sl_mult": 1.5,
+  "tp_mult": 3.0,
+  "min_volume_ratio": 0.3
+}
